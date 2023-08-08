@@ -1,0 +1,39 @@
+#include <stdio.h>
+int n , m=1 , s;
+int fibo( int a, int b)
+{
+    if(m>n)
+    return s;
+    else if(m==1)
+    {
+         s=a+b;
+         printf(" %d ",a);
+        printf(" %d ",b);
+        a=b;
+        b=s;
+         printf(" %d ",s);
+        m=m+1;
+        return fibo(a,b);
+    }
+    else 
+    {
+        s=a+b;
+        a=b;
+        b=s;
+        printf(" %d ",s);
+        m=m+1;
+        return fibo(a,b);
+    }
+}
+void main()
+{ int a,b;
+    printf(" enter the first input \n");
+    scanf(" %d",&a);        
+    printf(" enter the second input \n");
+    scanf(" %d",&b);
+printf("Enter the nth term \n");
+scanf(" %d",&n);
+if (n==0)
+printf("invalid input \n");
+fibo(a,b);
+}
