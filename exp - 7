@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+#define MAX_SIZE 100
+
+// Function to display the elements of the array
+void display(int arr[], int size) {
+    printf("Array elements: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+// Function to insert an element at a specified position
+int insert(int arr[], int *size, int pos, int value) {
+    if (*size >= MAX_SIZE || pos < 0 || pos > *size) {
+        return 0;  // Insertion not possible
+    }
+
+    for (int i = *size; i > pos; i--) {
+        arr[i] = arr[i - 1];
+    }
+
+    arr[pos] = value;
+    (*size)++;
+    return 1;  // Insertion successful
+}
+
+// Function to delete an element from a specified position
+int delete(int arr[], int *size, int pos) {
+    if (*size <= 0 || pos < 0 || pos >= *size) {
+        return 0;  // Deletion not possible
+    }
+
+    for (int i = pos; i < (*size - 1); i++) {
+        arr[i] = arr[i + 1];
+    }
+
+    (*size)--;
+    return 1;  // Deletion successful
+}
+
+int main() {
+    int arr[MAX_SIZE];
+    int size = 0;
+    
+    // Inserting elements
+    insert(arr, &size, 0, 10);
+    insert(arr, &size, 1, 20);
+    insert(arr, &size, 2, 30);
+    insert(arr, &size, 1, 15);
+    
+    // Displaying array
+    display(arr, size);
+    
+    // Deleting element
+    delete(arr, &size, 2);
+    
+    // Displaying array after deletion
+    display(arr, size);
+    
+    return 0;
+}
