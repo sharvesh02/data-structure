@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define SIZE 10 // Size of the hash table
+
+// Hash function
+int hash(int key) {
+    return key % SIZE;
+}
+
+// Function to insert a key into the hash table
+void insert(int hashTable[], int key) {
+    int index = hash(key);
+
+    // Linear probing
+    while (hashTable[index] != -1) {
+        index = (index + 1) % SIZE;
+    }
+
+    hashTable[index] = key;
+}
+
+// Function to display the hash table
+void display(int hashTable[]) {
+    printf("Hash Table:\n");
+    for (int i = 0; i < SIZE; i++) {
+        printf("%d: %d\n", i, hashTable[i]);
+    }
+}
+
+int main() {
+    int hashTable[SIZE];
+    for (int i = 0; i < SIZE; i++) {
+        hashTable[i] = -1; // Initialize all elements to -1 (indicating empty)
+    }
+
+    int n;
+    printf("Enter the number of elements to insert: ");
+    scanf("%d", &n);
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        int key;
+        scanf("%d", &key);
+        insert(hashTable, key);
+    }
+
+    display(hashTable);
+
+    return 0;
+}
